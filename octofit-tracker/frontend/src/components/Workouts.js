@@ -15,13 +15,32 @@ const Workouts = () => {
       .catch(err => console.error('Error fetching workouts:', err));
   }, []);
   return (
-    <div>
-      <h2>Workouts</h2>
-      <ul>
-        {workouts.map((workout, idx) => (
-          <li key={workout.id || idx}>{JSON.stringify(workout)}</li>
-        ))}
-      </ul>
+    <div className="mb-4">
+      <div className="card">
+        <div className="card-body">
+          <h2 className="card-title mb-4">Workouts</h2>
+          <div className="table-responsive">
+            <table className="table table-striped table-hover">
+              <thead className="table-primary">
+                <tr>
+                  <th>#</th>
+                  <th>Workout</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                {workouts.map((workout, idx) => (
+                  <tr key={workout.id || idx}>
+                    <td>{workout.id || idx + 1}</td>
+                    <td>{workout.name || workout.type || '-'}</td>
+                    <td>{JSON.stringify(workout)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
